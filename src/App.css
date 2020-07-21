@@ -3,3 +3,12 @@ label, p, input{
   display:inline-block;
   text-align: center;
 }
+
+li {
+  border: 3ch;
+  text-align: center;
+  font-size: 3ch;
+}
+button {
+  text-align: center;
+}
