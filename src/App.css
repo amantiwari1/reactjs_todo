@@ -1,14 +1,20 @@
-
-label, p, input{
+ p, input{
   display:inline-block;
   text-align: center;
 }
 
 li {
-  border: 3ch;
   text-align: center;
-  font-size: 3ch;
 }
 button {
   text-align: center;
+}
+.col {
+  text-align: center;
+  margin: 8px;
+}
+
+
+html body div#root div.container div div.row.list1 div.col {
+  flex-grow: 0.04;
 }
