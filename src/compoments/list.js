@@ -5,6 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 
@@ -15,6 +17,16 @@ function List(props) {
   const [taskUpdate, setTaskUpdate] = React.useState(
     { title: "", completed: false }
   );
+
+  let button1;
+
+  if (props.list.completed) {
+    button1 = <p>Complete</p>
+  } else {
+    button1 = <p>Uncomplete</p>
+  }
+
+ 
 
   const [show, setShow] = React.useState(false);
 
@@ -27,17 +39,39 @@ function List(props) {
       <div className="row list1">
     
     
-    <div className="col-lg 8">
-      <li
-        key={props.list.id}
-        className="list-group-item list-group-item-success">
+    <div className="col-lg 9">
+    <ListGroup>
+    <ListGroup.Item variant="primary" key={props.list.id}>
         {props.list.title}
-      </li>
+    </ListGroup.Item>
+    </ListGroup>
       </div>
 
-    <div className="col 2">
-            <Button
-              type="submit"
+      <div className="col 3">
+      <ButtonGroup size="lg"  aria-label="Basic example">
+          <Button onClick={handleShow} variant="primary">Edit</Button>
+          <Button onClick={(e) => {
+                console.log({ title: props.list.title, completed: !props.list.completed });
+                e.preventDefault()
+                axios.put('http://127.0.0.1:8000/task/'+props.list.id + '/?format=json',
+                { title: props.list.title, completed: !props.list.completed } )
+                  .then(function (response) {
+                    console.log(response)
+                    window.location.reload()
+
+                  })
+                  .catch(function (error) {
+                    console.log(error)
+                  })
+                }} variant="success">
+                  
+                  
+                  {button1}
+                  
+                  </Button>
+          
+          
+          <Button type="submit"
               onClick={(e) => {
                 e.preventDefault()
                 axios.delete('http://127.0.0.1:8000/task/'+props.list.id + '/?format=json')
@@ -49,25 +83,11 @@ function List(props) {
                     console.log(error)
                   })
               } }
-              variant="danger">
-              Delete
-              </Button>
-          </div>
+               variant="danger">Delete</Button>
+      </ButtonGroup>
+      </div>
 
-
-  <div className="col 2" >
-          <Button 
-          onClick={
-            handleShow
-            
-            
-          }
-          variant="dark" >
-              Edit
-              </Button>
-              </div>
-        </div>
-        <hr></hr>
+      </div>
 
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

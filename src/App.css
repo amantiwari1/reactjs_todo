@@ -13,6 +13,9 @@ button {
   text-align: center;
   margin: 8px;
 }
+div.list-group-item.list-group-item-primary {
+  text-align: center;
+}
 
 
 html body div#root div.container div div.row.list1 div.col {
