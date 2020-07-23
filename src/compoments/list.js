@@ -3,27 +3,48 @@ import '../App.css';
 import axios from 'axios'
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Grid from '@material-ui/core/Grid';
+
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-
-
+const useStyles = makeStyles((theme) => ({
+  colorText: {
+    backgroundColor: "#1abc9c"
+  },
+  button: {
+    backgroundColor: "#7ed6df"
+  },
+  complete: {
+    backgroundColor: "#f0932b"
+  },
+  uncomplete: {
+    backgroundColor: "#009688"
+  }
+}));
 
 function List(props) {
+
+  const classes = useStyles();
 
   const [taskUpdate, setTaskUpdate] = React.useState(
     { title: "", completed: false }
   );
 
   let button1;
+  let button2;
 
   if (props.list.completed) {
-    button1 = <p>Complete</p>
+    button1 = "Complete";
+    button2 = classes.complete;
   } else {
-    button1 = <p>Uncomplete</p>
+    button1 = "Uncomplete";
+    button2 = classes.uncomplete;
   }
 
  
@@ -35,21 +56,24 @@ function List(props) {
 
 
   return (
-    <div>
-      <div className="row list1">
+  <Grid container spacing={1}>
     
     
-    <div className="col-lg 9">
-    <ListGroup>
-    <ListGroup.Item variant="primary" key={props.list.id}>
-        {props.list.title}
-    </ListGroup.Item>
-    </ListGroup>
-      </div>
+    <Grid item xs={12} sm={8}>
 
-      <div className="col 3">
-      <ButtonGroup size="lg"  aria-label="Basic example">
-          <Button onClick={handleShow} variant="primary">Edit</Button>
+    <ListItem className={classes.colorText} alignItems='center' key={props.list.id}>
+    <ListItemText alignItems="center">
+    {props.list.title}
+    </ListItemText>
+    </ListItem>
+
+    </Grid>
+
+
+<Grid item xs={12} sm={4}>
+
+      <ButtonGroup size="large" variant="contained"  aria-label="contained primary button group">
+          <Button className={classes.button} onClick={handleShow} >Edit</Button>
           <Button onClick={(e) => {
                 console.log({ title: props.list.title, completed: !props.list.completed });
                 e.preventDefault()
@@ -63,12 +87,9 @@ function List(props) {
                   .catch(function (error) {
                     console.log(error)
                   })
-                }} variant="success">
-                  
-                  
-                  {button1}
-                  
-                  </Button>
+                }}
+                className={button2} 
+                > {button1} </Button>
           
           
           <Button type="submit"
@@ -83,11 +104,12 @@ function List(props) {
                     console.log(error)
                   })
               } }
-               variant="danger">Delete</Button>
-      </ButtonGroup>
-      </div>
+              color="secondary"
 
-      </div>
+               >Delete</Button>
+      </ButtonGroup>
+      </Grid>
+
 
         <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -129,7 +151,7 @@ function List(props) {
       </Modal>
         
       
-    </div>
+    </Grid>
   );
 }
 

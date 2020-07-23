@@ -1,14 +1,18 @@
 import React from 'react';
 import '../App.css';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+
+
 
 
 function Todo(props) {
+
+
   const [task1, addTask] = React.useState(
-    { title: "", completed: false }
+    { title: "", completed: true }
   );
 
   const handleSubmit = (e) => {
@@ -28,28 +32,41 @@ function Todo(props) {
 
 
   return (
-    <div>
-    <br></br>
-      <InputGroup  className="mb-3">
-      <InputGroup.Prepend>
-      <InputGroup.Text id="basic-addon1">TASK : </InputGroup.Text>
-    </InputGroup.Prepend>
-    <Form.Control
-      onChange={(event) => {
-        addTask({ title: event.target.value })
-      }}
-      placeholder="Add New Task"
-      aria-label="Add New Task"
-      aria-describedby="basic-addon2"
-    />
-    <InputGroup.Append>
-      <Button type="submit"
-              onClick={handleSubmit}
-               variant="primary">Add Task</Button>
-    </InputGroup.Append>
-  </InputGroup>
 
-    </div>
+    <Grid container spacing={4}>
+
+
+            <Grid item xs={12} sm={8}>
+            <br></br>
+
+            <TextField 
+              size="small" 
+              label="Add Task"
+              id="outlined-size-normal"
+              variant="outlined"
+              onChange={(event) => {
+                addTask({ title: event.target.value, completed: true })
+              }}    
+              fullWidth
+              required />  
+              </Grid>
+
+
+          <Grid item xs={12} sm={4}>
+            <br></br>
+            <Button   
+                      type="submit"
+                      onClick={handleSubmit}
+                      variant="contained" 
+                      color="primary">
+          Add Task
+        </Button>
+        </Grid>
+    </Grid>      
+    
+
+
+
   );
 }
 

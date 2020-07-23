@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Todo from './compoments/todo';
 import List from './compoments/list';
-
+import { Grid } from "@material-ui/core";
 
 
 
@@ -21,15 +21,23 @@ function App() {
 
 
   return (
-    <div className="container">
-      <Todo />
-      <br></br>
-      {
-        task.map(todo => (
-          <List list={todo} />
-        ))
-      }
-    </div>
+    <Grid container direction="column">
+        <Grid item container>
+              <Grid item xs={false} sm={2} />
+                <Grid item xs={12} sm={8}>
+                          <Todo />
+                        <br></br>
+                        {
+                          task.map(todo => (
+                            <List list={todo} />
+                          ))
+                        }
+                </Grid>
+              
+              <Grid item xs={false} sm={2} />
+              </Grid>
+    </Grid>
+
   );
 }
 
