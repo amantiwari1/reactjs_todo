@@ -1,6 +1,6 @@
 # Todo React WebApp with Django API
 
-![ScreenShot](images/pic.jpg)
+![ScreenShot](images/pic.JPG)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
