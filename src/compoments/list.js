@@ -15,16 +15,22 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   colorText: {
-    backgroundColor: "#1abc9c"
+    color: "white",
+    backgroundColor: "#55E6C1",
+    textAlign: "center",
+    fontSize: "100px",
   },
   button: {
-    backgroundColor: "#7ed6df"
+    backgroundColor: "#7ed6df",
+    color: "white",
   },
   complete: {
-    backgroundColor: "#f0932b"
+    color: "white",
+    backgroundColor: "#009688",
   },
   uncomplete: {
-    backgroundColor: "#009688"
+    color: "white",
+    backgroundColor: "#f0932b",
   }
 }));
 
@@ -61,8 +67,8 @@ function List(props) {
     
     <Grid item xs={12} sm={8}>
 
-    <ListItem className={classes.colorText} alignItems='center' key={props.list.id}>
-    <ListItemText alignItems="center">
+    <ListItem className={classes.colorText}  key={props.list.id}>
+    <ListItemText className={classes.colorText}>
     {props.list.title}
     </ListItemText>
     </ListItem>

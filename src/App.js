@@ -4,11 +4,23 @@ import './App.css';
 import Todo from './compoments/todo';
 import List from './compoments/list';
 import { Grid } from "@material-ui/core";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
-
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  appbar: {
+    flexGrow: 1,
+    alignItems: 'center'
+  }
+}));
 
 function App() {
+  const classes = useStyles();
   const [task, getTask] = useState([]);
 
   useEffect(() => {
@@ -21,6 +33,14 @@ function App() {
 
 
   return (
+    <div className={classes.root} >
+      <AppBar  className={classes.appbar} position="static">
+      <Toolbar>
+      <Typography variant="h6" color="inherit" className={classes.appbar}>
+            TASK
+          </Typography>
+      </Toolbar>
+      </AppBar>
     <Grid container direction="column">
         <Grid item container>
               <Grid item xs={false} sm={2} />
@@ -37,7 +57,7 @@ function App() {
               <Grid item xs={false} sm={2} />
               </Grid>
     </Grid>
-
+</div>
   );
 }
 
