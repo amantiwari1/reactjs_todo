@@ -1,6 +1,6 @@
 # Todo React WebApp with Django API
 
-## Demo ![Check Out](todoapitask.herokuapp.com/)
+## Demo ![Check Out](www.todoapitask.herokuapp.com)
 
 ![ScreenShot](images/pic.JPG)
 
